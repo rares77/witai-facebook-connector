@@ -10,6 +10,18 @@
     "wit",
     "witai",
     "chatbot"
-  ]
+  ],
+  
+  "env": {
+    "WIT_TOKEN": {
+      "required": true
+    },
+    "FB_PAGE_TOKEN": {
+      "description": "Facebook Page Token from https://developers.facebook.com/apps/",
+      "required": true
+    },
+    "FB_VERIFY_TOKEN": {
+    }
+  }
   
 }
