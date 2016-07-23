@@ -27,6 +27,6 @@
   "homepage": "https://github.com/rares77/witai-facebook-connector#readme",
   "dependencies": {
     "express": "^4.14.0",
-	"ejs": "2.4.2",
+	"ejs": "2.4.2"
   }
 }
