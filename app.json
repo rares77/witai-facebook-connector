@@ -14,6 +14,7 @@
   
   "env": {
     "WIT_TOKEN": {
+      "description": "Server Access Token from wit.ai (Open settings tab on you wit.ai app page).",
       "required": true
     },
     "FB_PAGE_TOKEN": {
@@ -21,6 +22,8 @@
       "required": true
     },
     "FB_VERIFY_TOKEN": {
+      "description": "Facebook verification Token. It acts like a password. Invent one.",
+      "required": true
     }
   }
   
