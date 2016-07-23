@@ -1,0 +1,15 @@
+{
+  "name": "Witai-Facebook-Connector",
+  "description": "Connects a Facebook App to Wit.ai in order to create a Chatbot",
+  "repository": "https://github.com/rares77/witai-facebook-connector.git",
+  "logo": "",
+  "keywords": [
+    "nodejs",
+    "express",
+    "facebook",
+    "wit",
+    "witai",
+    "chatbot"
+  ],
+  "image": ""
+}

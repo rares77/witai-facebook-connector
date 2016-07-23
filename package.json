@@ -4,7 +4,8 @@
   "description": "Connects a Facebook App to Wit.ai in order to create a Chatbot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,7 @@
     "chatbot"
   ],
   "author": "Rares Ilea",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rares77/witai-facebook-connector/issues"
   },
