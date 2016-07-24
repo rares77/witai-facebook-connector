@@ -16,8 +16,13 @@
     "express",
     "facebook",
     "wit",
-    "witai",
-    "chatbot"
+    "wit.ai",
+    "chatbot",
+	"bot",
+    "botengine",
+    "bots",
+    "nlp",
+    "automation"
   ],
   "author": "Rares Ilea",
   "license": "MIT",
