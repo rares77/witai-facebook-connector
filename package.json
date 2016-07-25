@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/rares77/witai-facebook-connector#readme",
   "dependencies": {
+    "@risingstack/trace": "^2.18.4",
     "body-parser": "^1.15.2",
     "ejs": "2.4.2",
     "express": "^4.14.0",
