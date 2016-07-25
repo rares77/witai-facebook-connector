@@ -8,16 +8,16 @@ var Config = require('../const.js');
 
 //configuring a default facebook request
 const fbRequest = request.defaults({
-	  uri: 'https://graph.facebook.com/me/messages',
-	  method: 'POST',
-	  json: true,
-	  qs: {
-	    access_token: Config.FB_PAGE_TOKEN
-	  },
-	  headers: {
-	    'Content-Type': 'application/json'
-	  },
-	});
+	uri: 'https://graph.facebook.com/me/messages',
+	method: 'POST',
+	json: true,
+	qs: {
+		access_token: Config.FB_PAGE_TOKEN
+	},
+	headers: {
+		'Content-Type': 'application/json'
+	},
+});
 
 //sending a message to facebook chat
 const fbMessage = (recipientId, msg, cb) => {
@@ -31,7 +31,7 @@ const fbMessage = (recipientId, msg, cb) => {
 				},
 			},
 	};
-	
+
 	/* https://developers.facebook.com/docs/messenger-platform/send-api-reference
 
 	 FOR IMAGES
@@ -66,7 +66,7 @@ const fbMessage = (recipientId, msg, cb) => {
 	     }
 	  }
 	}
-*/
+	 */
 	fbRequest(opts, (err, resp, data) => {
 		if (cb) {
 			cb(err || data.error && data.error.message, data);
@@ -77,8 +77,8 @@ const fbMessage = (recipientId, msg, cb) => {
 
 //PARSE A FACEBOOK MESSAGE to get user, message body, or attachment
 //https://developers.facebook.com/docs/messenger-platform/webhook-reference
-var parseMessage = function (body) {
-	console.log ("parsing message: " + JSON.stringify(body));
+var parseMessage = function (data) {
+	/*
 	var val = body.object === 'page' &&
 						body.entry &&
 						Array.isArray(body.entry) &&
@@ -89,9 +89,42 @@ var parseMessage = function (body) {
 						body.entry[0].messaging.length > 0 &&
 						body.entry[0].messaging[0]
 	return val || null
-}
+	 */
+	// Make sure this is a page subscription
+	if (data.object == 'page') {
+		// Iterate over each entry
+		// There may be multiple if batched
+		data.entry.forEach(function(pageEntry) {
+			var pageID = pageEntry.id;
+			var timeOfEvent = pageEntry.time;
+
+			// Iterate over each messaging event
+			pageEntry.messaging.forEach(function(messagingEvent) {
+				if (messagingEvent.optin) {
+					//receivedAuthentication(messagingEvent);
+				} else if (messagingEvent.message) {
+					var senderID = messagingEvent.sender.id;
+					var recipientID = messagingEvent.recipient.id;
+					var timeOfMessage = messagingEvent.timestamp;
+					var message = messagingEvent.message;
+					console.log("Received message for user %d and page %d at %d with message:", 
+							senderID, recipientID, timeOfMessage);
+					console.log(JSON.stringify(message));
+					return messagingEvent;
+				} else if (messagingEvent.delivery) {
+					//receivedDeliveryConfirmation(messagingEvent);
+				} else if (messagingEvent.postback) {
+					//receivedPostback(messagingEvent);
+				} else {
+					console.log("Webhook received unknown messagingEvent: ", messagingEvent);
+				}
+			});
+		});
+	}
+};
+
 
 module.exports = {
-	replyMessage: fbMessage,
-	parseMessage: parseMessage
-}
+		replyMessage: fbMessage,
+		parseMessage: parseMessage
+};
