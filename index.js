@@ -1,3 +1,5 @@
+'use strict';
+
 //You need to `npm install` the following dependencies: body-parser, express, request.
 const express = require('express');
 const bodyParser = require('body-parser');
