@@ -91,7 +91,7 @@ var parseMessage = function (data) {
 	return val || null
 	 */
 	// Make sure this is a page subscription
-	if (data.object == 'page') {
+	if (data && data.object == 'page') {
 		// Iterate over each entry
 		// There may be multiple if batched
 		data.entry.forEach(function(pageEntry) {
