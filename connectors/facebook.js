@@ -3,7 +3,7 @@
 // See the Send API reference
 // https://developers.facebook.com/docs/messenger-platform/send-api-reference
 const request = require('request');
-const Config = require('./const.js');
+const Config = require('../const.js');
 
 const fbReq = request.defaults({
   uri: 'https://graph.facebook.com/me/messages',

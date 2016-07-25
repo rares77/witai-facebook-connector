@@ -58,18 +58,18 @@ const findOrCreateSession = (fbid) => {
 
 //Webhook verify setup using FB_VERIFY_TOKEN
 app.get('/webhook', (req, res) => {
-	if (!Config.FB_VERIFY_TOKEN) {
-		throw new Error('missing FB_VERIFY_TOKEN');
-	}
-	if (req.query['hub.mode'] === 'subscribe' &&
-			req.query['hub.verify_token'] === Config.FB_VERIFY_TOKEN) {
-		console.log("veryfing webhook token suceess.");
-		res.send(req.query['hub.challenge']);
-	} else {
-		res.sendStatus(400);
-	}
+  if (!Config.FB_VERIFY_TOKEN) {
+    throw new Error('missing FB_VERIFY_TOKEN');
+  }
+  if (req.query['hub.mode'] === 'subscribe' &&
+    req.query['hub.verify_token'] === Config.FB_VERIFY_TOKEN) {
+    res.send(req.query['hub.challenge']);
+  } else {
+    res.sendStatus(400);
+  }
 });
-//The main message handler
+
+// The main message handler
 app.post('/webhook', (req, res) => {
   // Parsing the Messenger API response
   const messaging = FB.getFirstMessagingEntry(req.body);
