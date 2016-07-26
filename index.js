@@ -14,6 +14,7 @@ const FB = require('./connectors/facebook.js');
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
 
 //views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -72,7 +73,7 @@ app.get('/webhook', (req, res) => {
 
 //The main message handler
 app.post('/webhook', (req, res) => {
-	console.log("message method Request :: " +req);
+	console.log("message method Request :: " + req);
 	// Parsing the Messenger API response
 	const messaging = FB.parseMessage(req.body);
 	if (messaging && messaging.message) {
